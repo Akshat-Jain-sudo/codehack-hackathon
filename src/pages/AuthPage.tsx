@@ -216,7 +216,7 @@ export const AuthPage: React.FC = () => {
             {isVerifying ? 'Email Verification' : 'Institutional Access'}
           </h1>
           <p className="mt-1 text-xs font-mono uppercase tracking-wider text-[#7E8276]">
-            dura-loop.vercel.app • Shared Research Equipment Network
+            {typeof window !== 'undefined' ? window.location.host : 'dura-loop.vercel.app'} • Shared Research Equipment Network
           </p>
         </div>
       </div>
@@ -504,7 +504,7 @@ export const AuthPage: React.FC = () => {
 
       <div className="mt-8 text-center text-[10px] font-mono text-[#7E8276] uppercase tracking-widest space-y-1">
         <div>APEX RESEARCH NETWORK • VERIFIED IMMUTABLE ACCESS LEDGER</div>
-        <div className="text-[9px] text-[#AAB6A1]">POWERED BY RESEND EMAIL INFRASTRUCTURE • HOSTED AT DURA-LOOP.VERCEL.APP</div>
+        <div className="text-[9px] text-[#AAB6A1]">POWERED BY RESEND EMAIL INFRASTRUCTURE • SECURED ACCESS GATEWAY</div>
       </div>
     </div>
   );

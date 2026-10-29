@@ -65,7 +65,7 @@ export const Layout: React.FC = () => {
         onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
       />
 
-      <div className="flex-1 flex w-full max-w-full overflow-x-hidden">
+      <div className="flex-1 flex w-full max-w-full pt-14 sm:pt-16">
         {/* Desktop & Mobile Adaptive Sidebar */}
         <Sidebar 
           mobileOpen={mobileSidebarOpen}

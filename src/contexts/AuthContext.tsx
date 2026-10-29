@@ -124,10 +124,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password_hash: data.password,
     });
 
-    // Verification Link pointing to dura-loop.vercel.app or active host
-    const origin = typeof window !== 'undefined' && window.location.origin 
-      ? window.location.origin 
-      : 'https://dura-loop.vercel.app';
+    // Verification Link pointing to dynamic host or configured APP_URL
+    const origin = (import.meta as any).env?.VITE_APP_URL || (typeof window !== 'undefined' ? window.location.origin : 'https://dura-loop.vercel.app');
     const verificationLink = `${origin}/auth?mode=verify&email=${encodeURIComponent(cleanEmail)}&token=${verificationToken}`;
 
     // Dispatch real email via Resend API
@@ -174,9 +172,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setUserVerificationDetails(cleanEmail, verificationCode, verificationToken);
 
-    const origin = typeof window !== 'undefined' && window.location.origin 
-      ? window.location.origin 
-      : 'https://dura-loop.vercel.app';
+    const origin = (import.meta as any).env?.VITE_APP_URL || (typeof window !== 'undefined' ? window.location.origin : 'https://dura-loop.vercel.app');
     const verificationLink = `${origin}/auth?mode=verify&email=${encodeURIComponent(cleanEmail)}&token=${verificationToken}`;
 
     const sendResult = await dispatchVerificationEmail({
