@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F3F0E8;
+  --color-forest: #183D30;
+  --color-forest-dark: #0F2820;
+  --color-forest-light: #225141;
+  --color-lime: #D8FF3E;
+  --color-lime-hover: #C5EA2B;
+  --color-graphite: #252722;
+  --color-graphite-muted: #565950;
+  --color-graphite-light: #7E8276;
+  --color-sage: #AAB6A1;
+  --color-sage-light: #D4DDD0;
+  --color-warm-gray: #DCD9CF;
+  --color-warm-gray-light: #EBE8DF;
+  --color-warm-white: #FCFBF7;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  * {
+    border-color: #DCD9CF;
+  }
+
+  body {
+    background-color: #F3F0E8;
+    color: #252722;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Minimalist technical scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #F3F0E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #DCD9CF;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #AAB6A1;
+}
