@@ -11,7 +11,7 @@ export const AuthPage: React.FC = () => {
 
   const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('demo123');
+  const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState<UserRole>('borrower');
   const [department, setDepartment] = useState('Electrical Engineering');
@@ -72,7 +72,7 @@ export const AuthPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F0E8] text-[#252722] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-[#D8FF3E] selection:text-[#183D30]">
+    <div className="min-h-screen bg-[#F3F0E8] text-[#252722] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
       
       {/* Top Brand Header */}
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">

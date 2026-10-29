@@ -59,7 +59,7 @@ export const Layout: React.FC = () => {
   const breadcrumbs = getBreadcrumbs();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F0E8] text-[#252722] antialiased w-full max-w-full overflow-x-hidden selection:bg-[#D8FF3E] selection:text-[#183D30]">
+    <div className="min-h-screen flex flex-col bg-[#F3F0E8] text-[#252722] antialiased w-full max-w-full overflow-x-hidden">
       {/* Top Navigation */}
       <Navbar 
         onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
@@ -75,7 +75,7 @@ export const Layout: React.FC = () => {
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 min-w-0 flex flex-col w-full max-w-full overflow-x-hidden">
+        <div className={`flex-1 min-w-0 flex flex-col w-full max-w-full overflow-x-hidden transition-all duration-200 ${isSidebarCollapsed ? 'md:pl-16' : 'md:pl-60'}`}>
           {/* Subtle Contextual Breadcrumb Header */}
           <div className="px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-2.5 flex items-center justify-between text-xs text-[#565950] border-b border-[#DCD9CF]">
             <nav className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap py-1">

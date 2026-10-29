@@ -37,6 +37,7 @@
     background-color: #F3F0E8;
     color: #252722;
     font-family: var(--font-sans);
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   h1, h2, h3, .font-display {
@@ -64,3 +65,282 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #AAB6A1;
 }
+
+/* ═════════════════════════════════════════════════════════════════
+   LABLOOP DUAL THEME ENGINE (LIGHT & DARK ACCENTS)
+   High-contrast institutional laboratory design palette
+   ═════════════════════════════════════════════════════════════════ */
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0C1310 !important;
+  color: #F7F5EE !important;
+}
+
+/* Base Canvas & Paper surfaces */
+html.dark .bg-\[\#F3F0E8\],
+html.dark [class~="bg-[#F3F0E8]"] {
+  background-color: #0C1310 !important;
+}
+
+html.dark .bg-\[\#FCFBF7\],
+html.dark [class~="bg-[#FCFBF7]"] {
+  background-color: #15201A !important;
+}
+
+html.dark .bg-\[\#EAE5D8\],
+html.dark [class~="bg-[#EAE5D8]"] {
+  background-color: #1E2B23 !important;
+}
+
+html.dark .bg-\[\#EAE7DC\],
+html.dark [class~="bg-[#EAE7DC]"] {
+  background-color: #1A2620 !important;
+}
+
+html.dark .bg-\[\#E5E2D8\],
+html.dark [class~="bg-[#E5E2D8]"] {
+  background-color: #1A251F !important;
+}
+
+/* Neutral Count Badges & Category Squares in Dark Mode */
+html.dark .bg-\[\#DCD9CF\],
+html.dark [class~="bg-[#DCD9CF]"] {
+  background-color: #24352B !important;
+  color: #F7F5EE !important;
+}
+
+html.dark .bg-\[\#DCD9CF\] *,
+html.dark [class~="bg-[#DCD9CF]"] * {
+  color: #F7F5EE !important;
+}
+
+/* Border & Divider Transformations */
+html.dark .border-\[\#DCD9CF\],
+html.dark [class~="border-[#DCD9CF]"],
+html.dark .border-\[\#EBE8DF\],
+html.dark [class~="border-[#EBE8DF]"] {
+  border-color: #283B30 !important;
+}
+
+html.dark .divide-\[\#DCD9CF\] > :not([hidden]) ~ :not([hidden]),
+html.dark [class~="divide-[#DCD9CF]"] > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-\[\#EBE8DF\] > :not([hidden]) ~ :not([hidden]),
+html.dark [class~="divide-[#EBE8DF]"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #283B30 !important;
+}
+
+/* Typography Transformations - Maximum Readability & Contrast */
+html.dark .text-\[\#252722\],
+html.dark [class~="text-[#252722]"] {
+  color: #F7F5EE !important;
+}
+
+html.dark .text-\[\#565950\],
+html.dark [class~="text-[#565950]"] {
+  color: #CAD7C8 !important;
+}
+
+html.dark .text-\[\#7E8276\],
+html.dark [class~="text-[#7E8276]"] {
+  color: #98A999 !important;
+}
+
+html.dark .text-\[\#4A4D43\],
+html.dark [class~="text-[#4A4D43]"] {
+  color: #CAD7C8 !important;
+}
+
+/* Forest green text illuminates to bright neon lime on dark canvas */
+html.dark .text-\[\#183D30\],
+html.dark [class~="text-[#183D30]"] {
+  color: #D8FF3E !important;
+}
+
+/* Acid Lime elements keep deep forest dark text */
+html.dark .bg-\[\#D8FF3E\],
+html.dark [class~="bg-[#D8FF3E]"],
+html.dark .bg-\[\#D8FF3E\] > *,
+html.dark [class~="bg-[#D8FF3E]"] > *,
+html.dark .bg-\[\#D8FF3E\] span,
+html.dark [class~="bg-[#D8FF3E]"] span,
+html.dark .bg-\[\#D8FF3E\] svg,
+html.dark [class~="bg-[#D8FF3E]"] svg {
+  color: #0F2820 !important;
+}
+
+/* Institutional Header in Dark Mode */
+html.dark header {
+  background-color: #0A1510 !important;
+  border-color: #172A20 !important;
+}
+
+html.dark .bg-\[\#0F2820\],
+html.dark [class~="bg-[#0F2820]"] {
+  background-color: #102119 !important;
+}
+
+html.dark .border-\[\#225141\],
+html.dark [class~="border-[#225141]"] {
+  border-color: #1F3F30 !important;
+}
+
+html.dark .bg-\[\#225141\],
+html.dark [class~="bg-[#225141]"] {
+  background-color: #1A3629 !important;
+}
+
+/* Active navigation item in dark mode */
+html.dark .bg-\[\#183D30\],
+html.dark [class~="bg-[#183D30]"] {
+  background-color: #172E23 !important;
+}
+
+/* Interactive Elements Hover States */
+html.dark .hover\:bg-\[\#F3F0E8\]:hover,
+html.dark [class~="hover:bg-[#F3F0E8]"]:hover {
+  background-color: #1A2720 !important;
+}
+
+html.dark .hover\:bg-\[\#FCFBF7\]:hover,
+html.dark [class~="hover:bg-[#FCFBF7]"]:hover {
+  background-color: #1E2E25 !important;
+}
+
+html.dark .hover\:bg-\[\#EAE5D8\]:hover,
+html.dark [class~="hover:bg-[#EAE5D8]"]:hover {
+  background-color: #24352B !important;
+}
+
+html.dark .hover\:bg-\[\#DCD9CF\]:hover,
+html.dark [class~="hover:bg-[#DCD9CF]"]:hover {
+  background-color: #283B30 !important;
+}
+
+html.dark .hover\:text-\[\#183D30\]:hover,
+html.dark [class~="hover:text-[#183D30]"]:hover {
+  color: #D8FF3E !important;
+}
+
+html.dark .hover\:text-\[\#252722\]:hover,
+html.dark [class~="hover:text-[#252722]"]:hover {
+  color: #FFFFFF !important;
+}
+
+html.dark .hover\:border-\[\#183D30\]:hover,
+html.dark [class~="hover:border-[#183D30]"]:hover {
+  border-color: #D8FF3E !important;
+}
+
+/* Inputs, Textareas, Selects & Forms */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #141E19 !important;
+  color: #F7F5EE !important;
+  border-color: #283B30 !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #D8FF3E !important;
+  outline: none !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #798E7B !important;
+}
+
+html.dark select option {
+  background-color: #15201A !important;
+  color: #F7F5EE !important;
+}
+
+/* Monospace Code & Terminal blocks */
+html.dark pre,
+html.dark code:not([class~="bg-[#D8FF3E]"]) {
+  background-color: #09120D !important;
+  border-color: #1E3528 !important;
+}
+
+/* Dark Mode Scrollbars */
+html.dark ::-webkit-scrollbar-track {
+  background: #0C1310 !important;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #283B30 !important;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3E5748 !important;
+}
+
+/* Status Badges & Inset Overlays in Dark Mode */
+html.dark [class*="bg-[#183D30]/10"],
+html.dark [class*="bg-[#183D30]/15"],
+html.dark [class*="bg-[#183D30]/20"] {
+  background-color: rgba(216, 255, 62, 0.12) !important;
+}
+
+html.dark [class*="border-[#183D30]/20"],
+html.dark [class*="border-[#183D30]/30"],
+html.dark [class*="border-[#183D30]/40"] {
+  border-color: rgba(216, 255, 62, 0.3) !important;
+}
+
+/* Pending / Attention Badges */
+html.dark .bg-\[\#EAE5D8\],
+html.dark [class~="bg-[#EAE5D8]"] {
+  background-color: #2D2615 !important;
+}
+
+html.dark .text-\[\#6B5A2B\],
+html.dark [class~="text-[#6B5A2B]"],
+html.dark .text-\[\#854D0E\],
+html.dark [class~="text-[#854D0E]"] {
+  color: #F8E298 !important;
+}
+
+html.dark .bg-\[\#B09848\],
+html.dark [class~="bg-[#B09848]"] {
+  background-color: #F8E298 !important;
+}
+
+html.dark .border-\[\#D5CBB5\],
+html.dark [class~="border-[#D5CBB5]"] {
+  border-color: #4D4222 !important;
+}
+
+/* Danger / Overdue Badges */
+html.dark .bg-\[\#F2DEDE\],
+html.dark [class~="bg-[#F2DEDE]"] {
+  background-color: #38191B !important;
+}
+
+html.dark .text-\[\#842029\],
+html.dark [class~="text-[#842029]"] {
+  color: #FFA5AB !important;
+}
+
+html.dark .border-\[\#E8B4B8\],
+html.dark [class~="border-[#E8B4B8]"],
+html.dark [class*="border-[#842029]"] {
+  border-color: #5C2A2D !important;
+}
+
+/* Maintenance Badges */
+html.dark .bg-\[\#E2E6DF\],
+html.dark [class~="bg-[#E2E6DF]"] {
+  background-color: #192A20 !important;
+}
+
+html.dark .text-\[\#2D4536\],
+html.dark [class~="text-[#2D4536]"] {
+  color: #9DE4B6 !important;
+}
+
+

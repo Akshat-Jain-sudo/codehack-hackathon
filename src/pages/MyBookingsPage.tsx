@@ -302,7 +302,7 @@ export const MyBookingsPage: React.FC = () => {
             }`}
           >
             <span>ACTIVE & IN-USE</span>
-            <span className={`px-1.5 py-0.2 text-[10px] ${activeTab === 'upcoming' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#565950]'}`}>
+            <span className={`px-1.5 py-0.2 text-[10px] font-mono font-bold ${activeTab === 'upcoming' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#252722] dark:bg-[#283B30] dark:text-[#F7F5EE]'}`}>
               {upcomingBookings.length}
             </span>
           </button>
@@ -317,7 +317,7 @@ export const MyBookingsPage: React.FC = () => {
             }`}
           >
             <span>DRAFTS & REVIEW</span>
-            <span className={`px-1.5 py-0.2 text-[10px] ${activeTab === 'pending' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#565950]'}`}>
+            <span className={`px-1.5 py-0.2 text-[10px] font-mono font-bold ${activeTab === 'pending' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#252722] dark:bg-[#283B30] dark:text-[#F7F5EE]'}`}>
               {pendingBookings.length}
             </span>
           </button>
@@ -332,7 +332,7 @@ export const MyBookingsPage: React.FC = () => {
             }`}
           >
             <span>WAITLIST QUEUE</span>
-            <span className={`px-1.5 py-0.2 text-[10px] ${activeTab === 'waitlist' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#565950]'}`}>
+            <span className={`px-1.5 py-0.2 text-[10px] font-mono font-bold ${activeTab === 'waitlist' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#252722] dark:bg-[#283B30] dark:text-[#F7F5EE]'}`}>
               {waitlistBookings.length}
             </span>
           </button>
@@ -347,7 +347,7 @@ export const MyBookingsPage: React.FC = () => {
             }`}
           >
             <span>ARCHIVE & LOG</span>
-            <span className={`px-1.5 py-0.2 text-[10px] ${activeTab === 'history' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#565950]'}`}>
+            <span className={`px-1.5 py-0.2 text-[10px] font-mono font-bold ${activeTab === 'history' ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#252722] dark:bg-[#283B30] dark:text-[#F7F5EE]'}`}>
               {historyBookings.length}
             </span>
           </button>

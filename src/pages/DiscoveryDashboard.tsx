@@ -344,7 +344,7 @@ export const DiscoveryDashboard: React.FC = () => {
                   }`}
                 >
                   <span>{c.name}</span>
-                  <span className={`text-[10px] px-1 py-0.2 ${isSelected ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#565950]'}`}>
+                  <span className={`text-[10px] px-1.5 py-0.2 font-mono font-bold ${isSelected ? 'bg-[#D8FF3E]/20 text-[#D8FF3E]' : 'bg-[#DCD9CF] text-[#252722] dark:bg-[#283B30] dark:text-[#F7F5EE]'}`}>
                     {count}
                   </span>
                 </button>

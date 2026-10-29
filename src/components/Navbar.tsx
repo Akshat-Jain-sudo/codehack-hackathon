@@ -12,9 +12,12 @@ import {
   User as UserIcon,
   CheckCircle,
   Clock,
-  Sparkles
+  Sparkles,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { 
   getNotificationsForUser, 
   markNotificationRead, 
@@ -33,6 +36,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
   const { user, logout, login } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [showNotifs, setShowNotifs] = useState(false);
   const [showRoleMenu, setShowRoleMenu] = useState(false);
@@ -300,6 +304,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                   </div>
                 )}
               </div>
+
+              {/* Theme Toggle (Light / Dark) */}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="p-1.5 sm:p-2 text-[#F3F0E8] hover:text-[#D8FF3E] hover:bg-[#225141] transition-colors cursor-pointer border border-[#225141] shrink-0"
+                title={theme === 'dark' ? 'Switch to Light theme' : 'Switch to Dark theme'}
+                aria-label="Toggle theme mode"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-[#D8FF3E]" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+              </button>
 
               {/* Logout Button */}
               <button
