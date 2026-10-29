@@ -175,10 +175,51 @@ export function createUser(user: Omit<User, 'id' | 'created_at'>): User {
     ...user,
     id: generateId(),
     created_at: new Date().toISOString(),
+    email_verified: user.email_verified ?? true,
   };
   _store.users.push(newUser);
   commit();
   return newUser;
+}
+
+export function setUserVerificationDetails(
+  email: string,
+  code: string,
+  token: string
+): { success: boolean; error?: string } {
+  const user = _store.users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  if (!user) return { success: false, error: 'User not found' };
+  user.verification_code = code;
+  user.verification_token = token;
+  user.verification_sent_at = new Date().toISOString();
+  commit();
+  return { success: true };
+}
+
+export function verifyUserEmail(
+  email: string,
+  codeOrToken: string
+): { success: boolean; error?: string; user?: User } {
+  const user = _store.users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  if (!user) return { success: false, error: 'User not found' };
+
+  if (user.email_verified) {
+    return { success: true, user };
+  }
+
+  const cleanedInput = codeOrToken.trim();
+  const matchesCode = user.verification_code && user.verification_code === cleanedInput;
+  const matchesToken = user.verification_token && user.verification_token === cleanedInput;
+
+  if (!matchesCode && !matchesToken) {
+    return { success: false, error: 'Invalid or expired verification pass code.' };
+  }
+
+  user.email_verified = true;
+  user.verification_code = undefined;
+  user.verification_token = undefined;
+  commit();
+  return { success: true, user };
 }
 
 export function updateUserRole(

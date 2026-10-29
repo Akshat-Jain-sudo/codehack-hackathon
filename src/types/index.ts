@@ -67,6 +67,10 @@ export interface User {
   created_at: string;
   /** Only used in-memory for auth; never stored in plaintext in production */
   password_hash?: string;
+  email_verified?: boolean;
+  verification_code?: string;
+  verification_token?: string;
+  verification_sent_at?: string;
 }
 
 export interface Category {
