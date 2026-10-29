@@ -1,4 +1,4 @@
-# LabLoop — Trusted Institutional Resource Sharing
+# Dura-Loop — Trusted Institutional Resource Sharing
 
 > **National Hackathon Finalist Solution — "Unlock Underused Equipment and Spaces"**  
 > A production-minded, privacy-preserving institutional platform enabling university students, faculty, and research labs to discover, fairly allocate, and safely share high-value laboratory equipment, fabrication tools, and specialized computing spaces.
@@ -14,8 +14,8 @@ Universities and research institutions invest millions in high-end laboratory ge
 - **Informal, Unaudited Booking**: Relying on whiteboards, email chains, and word-of-mouth leading to double-booking collisions and zero accountability.
 - **Unfair Allocation**: Lab hoarding by senior students and privileged research groups, locking out undergraduates and capstone teams.
 
-### The LabLoop Solution
-LabLoop bridges this gap with an institutional sharing network featuring **role-based custody verification**, **strict eligibility & safety training gates**, **deterministic fair allocation**, **append-only audit event logging**, and **dual-mode AI goal matching with zero hallucination risk**.
+### The Dura-Loop Solution
+Dura-Loop bridges this gap with an institutional sharing network featuring **role-based custody verification**, **strict eligibility & safety training gates**, **deterministic fair allocation**, **append-only audit event logging**, and **dual-mode AI goal matching with zero hallucination risk**.
 
 ---
 
@@ -31,7 +31,7 @@ LabLoop bridges this gap with an institutional sharing network featuring **role-
            ┌─────────────────────────┴─────────────────────────┐
            ▼                                                   ▼
 ┌─────────────────────────────┐             ┌─────────────────────────────┐
-│  State Machine & Store Engine│             │  LabLoop Match & Explain   │
+│  State Machine & Store Engine│             │  Dura-Loop Match & Explain   │
 │  - 8-State Booking Machine  │             │  - Intent Extraction        │
 │  - FIFO & Quota Limits      │             │  - Grounded Scoring Engine  │
 │  - Condition Diff Analysis  │             │  - Gemini 3.8 Flash SDK     │
@@ -99,8 +99,8 @@ The system includes safe mock demonstration accounts with no production credenti
 
 ### 1. Clone & Install
 ```bash
-git clone https://github.com/your-org/labloop.git
-cd labloop
+git clone https://github.com/your-org/dura-loop.git
+cd dura-loop
 npm install
 ```
 
@@ -142,7 +142,7 @@ npm run preview
 
 ## 6. Automated QA & Security Verification Results
 
-LabLoop contains a 1,200-line automated test suite (`src/tests/test-runner.ts`) verifying all core business invariants:
+Dura-Loop contains a 1,200-line automated test suite (`src/tests/test-runner.ts`) verifying all core business invariants:
 
 | # | Test Suite | Assertions | Result |
 | :-: | :--- | :-: | :-: |
@@ -158,7 +158,7 @@ LabLoop contains a 1,200-line automated test suite (`src/tests/test-runner.ts`) 
 | 10 | Extensions, Overdue Automation & Fairness Limits | 5 | **PASS** |
 | 11 | Resource Handover & Physical Accountability Workflow | 19 | **PASS** |
 | 12 | Owner & Manager Governance, RBAC, Blackouts & Exceptions | 28 | **PASS** |
-| 13 | LabLoop Match & Explain AI Engine & Staff Demand Analytics | 27 | **PASS** |
+| 13 | Dura-Loop Match & Explain AI Engine & Staff Demand Analytics | 27 | **PASS** |
 | 14 | **Mandatory End-to-End Resource Sharing Lifecycle (Judge Scenario Steps 1–10)** | 12 | **PASS** |
 | 15 | **Trust, Notifications, Role-Based Audit Visibility & Security Controls** | 10 | **PASS** |
 | **Total** | **15 Test Suites** | **157 Tests** | **100% PASS** |
@@ -215,7 +215,7 @@ To maintain transparency during hackathon evaluation:
 
 ## 10. AI Usage Disclosure & Ethical Invariants
 
-LabLoop integrates AI strictly under institutional governance guardrails:
+Dura-Loop integrates AI strictly under institutional governance guardrails:
 1. **Advisory Role Only**: AI matching scores and demand summaries are strictly advisory.
 2. **Zero Opaque Denials**: The system **NEVER** uses an opaque AI score as the sole basis for denying access or imposing penalties. Every denial is grounded in explicit, disclosed rules (e.g., missing safety training, active booking quota exceeded).
 3. **Zero Hallucination Risk**: Recommendations only surface real assets present in the database.

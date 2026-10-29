@@ -349,7 +349,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {/* Drawer content */}
           <div className="relative w-72 max-w-[85vw] bg-[#FCFBF7] h-full shadow-2xl flex flex-col z-10 border-r border-[#DCD9CF]">
             <div className="p-4 border-b border-[#DCD9CF] flex items-center justify-between bg-[#183D30] text-[#F3F0E8]">
-              <span className="font-display font-bold text-xs uppercase tracking-widest text-[#D8FF3E]">LABLOOP SYSTEM</span>
+              <span className="font-display font-bold text-xs uppercase tracking-widest text-[#D8FF3E]">DURA-LOOP SYSTEM</span>
               <button 
                 onClick={onCloseMobile}
                 className="p-1 text-[#F3F0E8] hover:text-[#D8FF3E]"

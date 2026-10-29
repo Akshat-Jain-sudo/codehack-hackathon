@@ -203,7 +203,7 @@ export const AuthPage: React.FC = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
         <div className="inline-flex items-center gap-2.5 p-2 bg-[#183D30] text-[#D8FF3E]">
           <Layers className="w-5 h-5 stroke-[2.5]" />
-          <span className="font-display font-bold text-sm tracking-widest uppercase">LABLOOP // ACCESS GATE 00</span>
+          <span className="font-display font-bold text-sm tracking-widest uppercase">DURA-LOOP // ACCESS GATE 00</span>
         </div>
         
         <div>

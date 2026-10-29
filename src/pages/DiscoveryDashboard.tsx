@@ -66,7 +66,7 @@ export const DiscoveryDashboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
 
-  // ─── LabLoop Match & Explain State ─────────────────────────
+  // ─── Dura-Loop Match & Explain State ─────────────────────────
   const [isAiPanelOpen, setIsAiPanelOpen] = useState(false);
   const [aiGoalQuery, setAiGoalQuery] = useState('');
   const [isAnalyzingAi, setIsAnalyzingAi] = useState(false);
@@ -447,7 +447,7 @@ export const DiscoveryDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* ─── LabLoop Match & Explain Interactive Terminal ─── */}
+        {/* ─── Dura-Loop Match & Explain Interactive Terminal ─── */}
         {isAiPanelOpen && (
           <div className="pt-4 border-t border-[#DCD9CF] bg-[#F3F0E8] p-4 sm:p-5 border border-[#183D30]/20 space-y-4">
             <div className="flex items-center justify-between">
@@ -1053,7 +1053,7 @@ export const DiscoveryDashboard: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 bg-[#D8FF3E] border border-[#183D30] inline-block"></span>
                 <h3 className="font-display font-bold text-base text-[#252722]">
-                  LABLOOP MATCHING ARCHITECTURE
+                  DURA-LOOP MATCHING ARCHITECTURE
                 </h3>
               </div>
               <button

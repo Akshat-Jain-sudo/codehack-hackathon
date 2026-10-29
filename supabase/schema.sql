@@ -1,5 +1,5 @@
 -- ============================================================================
--- LabLoop — Trusted Resource Sharing Schema for Supabase / PostgreSQL
+-- Dura-Loop — Trusted Resource Sharing Schema for Supabase / PostgreSQL
 -- ============================================================================
 
 -- Enable pgcrypto for UUID generation
@@ -198,7 +198,7 @@ CREATE TABLE public.institution_config (
   cancellation_window_hours INTEGER NOT NULL DEFAULT 2,
   require_checkin_photo BOOLEAN NOT NULL DEFAULT true,
   allow_self_checkin BOOLEAN NOT NULL DEFAULT true,
-  support_email TEXT NOT NULL DEFAULT 'labloop-support@metrotech.edu',
+  support_email TEXT NOT NULL DEFAULT 'dura-loop-support@metrotech.edu',
   support_phone TEXT NOT NULL DEFAULT '(555) 019-2831',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );

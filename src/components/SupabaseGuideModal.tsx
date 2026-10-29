@@ -41,7 +41,7 @@ export const SupabaseGuideModal: React.FC<SupabaseGuideModalProps> = ({ isOpen, 
               <span>POSTGRESQL RELATIONAL INTEGRITY & RLS SAFEGUARDS</span>
             </div>
             <p className="text-xs font-sans text-[#565950] leading-relaxed">
-              LabLoop ships with a complete PostgreSQL schema migration at <code className="bg-[#FCFBF7] px-1.5 py-0.5 border border-[#DCD9CF] text-[#183D30] font-mono text-[11px]">supabase/schema.sql</code>. 
+              Dura-Loop ships with a complete PostgreSQL schema migration at <code className="bg-[#FCFBF7] px-1.5 py-0.5 border border-[#DCD9CF] text-[#183D30] font-mono text-[11px]">supabase/schema.sql</code>. 
               The application runtime uses an in-browser persistent data layer mirroring Supabase's tables, constraints, and relational integrity.
             </p>
           </div>

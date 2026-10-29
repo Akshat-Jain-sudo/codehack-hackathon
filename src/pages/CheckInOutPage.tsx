@@ -544,7 +544,7 @@ export const CheckInOutPage: React.FC = () => {
               <div className="bg-[#183D30] text-[#F3F0E8] p-6 border-2 border-[#183D30] flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="space-y-2 text-center sm:text-left">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[#D8FF3E] block">
-                    CUSTODY PASS // LABLOOP-{activeBooking.id.slice(0, 8).toUpperCase()}
+                    CUSTODY PASS // DURA-LOOP-{activeBooking.id.slice(0, 8).toUpperCase()}
                   </span>
                   <h3 className="text-2xl font-display font-bold text-[#FCFBF7]">{activeResource.name}</h3>
                   <p className="text-xs text-[#DCD9CF] font-sans">

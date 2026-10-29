@@ -40,7 +40,7 @@ export default async function handler(req: any, res: any) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LabLoop Passport Identity Verification</title>
+    <title>Dura-Loop Passport Identity Verification</title>
     <style>
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0C1310; color: #F7F5EE; margin: 0; padding: 32px 16px; }
       .container { max-width: 520px; margin: 0 auto; background-color: #15201A; border: 1px solid #283B30; padding: 36px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -58,10 +58,10 @@ export default async function handler(req: any, res: any) {
   </head>
   <body>
     <div class="container">
-      <div class="brand">LABLOOP // 01 SPECIMEN NETWORK</div>
+      <div class="brand">DURA-LOOP // 01 SPECIMEN NETWORK</div>
       <h1>Authenticate Research Passport</h1>
       <p>Hello ${fullName ? fullName : 'Researcher'},</p>
-      <p>Your institutional research account on <strong style="color: #F7F5EE;">LabLoop</strong> (<a href="${appUrl}" style="color: #D8FF3E; text-decoration: none;">${cleanHost}</a>) is ready for activation.</p>
+      <p>Your institutional research account on <strong style="color: #F7F5EE;">Dura-Loop</strong> (<a href="${appUrl}" style="color: #D8FF3E; text-decoration: none;">${cleanHost}</a>) is ready for activation.</p>
       <p>Please enter your single-use verification code in the portal to confirm your custody qualifications:</p>
       
       <div class="code-container">
@@ -76,7 +76,7 @@ export default async function handler(req: any, res: any) {
       ` : ''}
 
       <p class="note">
-        This verification pass is cryptographically bound to <strong>${email}</strong> and expires in 15 minutes. If you did not register on LabLoop at ${cleanHost}, you can safely ignore this automated message.
+        This verification pass is cryptographically bound to <strong>${email}</strong> and expires in 15 minutes. If you did not register on Dura-Loop at ${cleanHost}, you can safely ignore this automated message.
       </p>
 
       <div class="footer">
@@ -106,9 +106,9 @@ export default async function handler(req: any, res: any) {
       });
 
       const info = await transporter.sendMail({
-        from: `LabLoop Security <${gmailUser}>`,
+        from: `Dura-Loop Security <${gmailUser}>`,
         to: email,
-        subject: `[LabLoop] Verify your account (${verificationCode})`,
+        subject: `[Dura-Loop] Verify your account (${verificationCode})`,
         html: htmlContent,
       });
 
@@ -133,12 +133,12 @@ export default async function handler(req: any, res: any) {
   if (apiKey) {
     try {
       const resend = new Resend(apiKey);
-      const fromAddress = process.env.RESEND_FROM_EMAIL || 'LabLoop Security <onboarding@resend.dev>';
+      const fromAddress = process.env.RESEND_FROM_EMAIL || 'Dura-Loop Security <onboarding@resend.dev>';
 
       const sendResponse = await resend.emails.send({
         from: fromAddress,
         to: [email],
-        subject: `[LabLoop] Verify your account (${verificationCode})`,
+        subject: `[Dura-Loop] Verify your account (${verificationCode})`,
         html: htmlContent,
       });
 

@@ -108,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">
                     <span className="font-display font-bold text-base sm:text-lg text-[#F3F0E8] tracking-tight group-hover:text-[#D8FF3E] transition-colors">
-                      LABLOOP
+                      DURA-LOOP
                     </span>
                     <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 bg-[#D8FF3E] text-[#183D30] font-mono hidden sm:inline">
                       NET / 01

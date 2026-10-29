@@ -807,7 +807,7 @@ export const InstitutionManagerDashboard: React.FC = () => {
               </span>
             </div>
             <p className="text-xs font-sans text-[#F3F0E8] leading-relaxed max-w-3xl">
-              LabLoop enforces transparent, auditable rules for university equipment distribution. No opaque AI score is ever used as the sole basis for denying access or imposing penalties. Every allocation decision cites verifiable database criteria:
+              Dura-Loop enforces transparent, auditable rules for university equipment distribution. No opaque AI score is ever used as the sole basis for denying access or imposing penalties. Every allocation decision cites verifiable database criteria:
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 font-mono text-xs">
               <div className="p-3 bg-[#0F2820] border border-[#225141] space-y-1">

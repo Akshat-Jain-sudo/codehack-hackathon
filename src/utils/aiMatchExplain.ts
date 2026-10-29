@@ -97,7 +97,7 @@ export function extractQueryIntentDeterministic(
       clarifyingQuestion: null,
       clarifyingOptions: [],
       isIrrelevant: true,
-      irrelevantMessage: `LabLoop is dedicated exclusively to academic laboratory hardware, testing gear, and fabrication spaces. We found no campus equipment matching "${query}". Try searching for test instruments, 3D printers, or GPU clusters.`,
+      irrelevantMessage: `Dura-Loop is dedicated exclusively to academic laboratory hardware, testing gear, and fabrication spaces. We found no campus equipment matching "${query}". Try searching for test instruments, 3D printers, or GPU clusters.`,
     };
   }
 
@@ -335,7 +335,7 @@ function enrichResourceExplanation(
 }
 
 /**
- * Executes LabLoop Match & Explain.
+ * Executes Dura-Loop Match & Explain.
  * Attempts Gemini API when configured, or executes deterministic rules matching engine.
  * Never allows AI to bypass authorization, qualifications, or safety invariants.
  */
@@ -374,7 +374,7 @@ export async function runMatchAndExplain(
   if (apiKey && apiKey.length > 10 && !isSuspicious) {
     try {
       const ai = new GoogleGenAI({ apiKey });
-      const prompt = `You are the LabLoop Equipment Match & Explain AI Assistant for a university engineering campus.
+      const prompt = `You are the Dura-Loop Equipment Match & Explain AI Assistant for a university engineering campus.
 Analyze this student project goal: "${sanitizedQuery}".
 
 CAMPUS INVENTORY CATALOG:
@@ -433,7 +433,7 @@ Output strictly in valid JSON matching this schema.`;
             intent: {
               ...deterministicIntent,
               isIrrelevant: true,
-              irrelevantMessage: `LabLoop is dedicated exclusively to academic laboratory hardware. No equipment found matching "${sanitizedQuery}".`,
+              irrelevantMessage: `Dura-Loop is dedicated exclusively to academic laboratory hardware. No equipment found matching "${sanitizedQuery}".`,
             },
             matches: [],
             engineMode: 'gemini_ai',
@@ -688,7 +688,7 @@ export async function generateStaffDemandInsights(): Promise<StaffDemandInsights
   if (apiKey && apiKey.length > 10) {
     try {
       const ai = new GoogleGenAI({ apiKey });
-      const prompt = `You are the LabLoop Campus Facilities AI Analyst.
+      const prompt = `You are the Dura-Loop Campus Facilities AI Analyst.
 Given the following MEASURED campus booking telemetry:
 - Total Bookings Evaluated: ${totalBookingsEvaluated}
 - Campus Utilization: ${campusUtilizationPercent}% | Idle: ${campusIdlePercentage}%
