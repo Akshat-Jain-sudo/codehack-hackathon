@@ -82,7 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-[#183D30] text-[#F3F0E8] border-b border-[#0F2820] shadow-sm">
+      <header className="fixed top-0 left-0 right-0 w-full z-50 bg-[#183D30] text-[#F3F0E8] border-b border-[#0F2820] shadow-sm">
         <div className="w-full px-2.5 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-3">
             
