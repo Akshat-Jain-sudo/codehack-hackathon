@@ -22,7 +22,7 @@ import {
 } from '../data/store';
 import { useAuth } from '../contexts/AuthContext';
 import { StatusBadge } from '../components/StatusBadge';
-import { formatDateTime } from '../utils/formatters';
+import { formatDateTime, handleImageError } from '../utils/formatters';
 import type { Booking, BookingPriority, BookingStatus } from '../types';
 
 export const BookingRequestPage: React.FC = () => {
@@ -70,8 +70,16 @@ export const BookingRequestPage: React.FC = () => {
   }
 
   // Calculate full ISO strings
-  const startIso = `${date}T${startTime}:00.000Z`;
-  const endIso = `${date}T${endTime}:00.000Z`;
+  const startIso = useMemo(() => {
+    if (!date || !startTime) return '';
+    const d = new Date(`${date}T${startTime}`);
+    return isNaN(d.getTime()) ? '' : d.toISOString();
+  }, [date, startTime]);
+  const endIso = useMemo(() => {
+    if (!date || !endTime) return '';
+    const d = new Date(`${date}T${endTime}`);
+    return isNaN(d.getTime()) ? '' : d.toISOString();
+  }, [date, endTime]);
 
   // Validation
   const durationHours = useMemo(() => {
@@ -226,7 +234,7 @@ export const BookingRequestPage: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6 pb-16 font-mono text-xs">
+    <div className="max-w-3xl w-full max-w-full overflow-x-hidden mx-auto space-y-6 pb-16 font-mono text-xs">
       
       {/* ─── 01 / SPECIMEN CONTEXT BANNER ─── */}
       <div className="flex items-center justify-between border-b border-[#DCD9CF] pb-4">
@@ -250,6 +258,7 @@ export const BookingRequestPage: React.FC = () => {
             <img 
               src={resource.image_url} 
               alt={resource.name} 
+              onError={handleImageError} 
               className="w-full h-full object-cover opacity-90" 
             />
           </div>
@@ -284,7 +293,8 @@ export const BookingRequestPage: React.FC = () => {
                 }`}
               >
                 <div className="text-[10px] tracking-wider truncate">
-                  {isCompleted ? `✓ ${s.label}` : s.label}
+                  <span className="sm:hidden font-bold">{isCompleted ? '✓' : s.number}</span>
+                  <span className="hidden sm:inline">{isCompleted ? `✓ ${s.label}` : s.label}</span>
                 </div>
               </div>
             );

@@ -320,12 +320,12 @@ CREATE OR REPLACE FUNCTION check_booking_overlap()
 RETURNS TRIGGER AS $$
 BEGIN
   -- Only validate overlap if status is confirmed/active
-  IF NEW.status IN ('approved', 'checked_in', 'return_pending', 'overdue') THEN
+  IF NEW.status IN ('approved', 'checked_in', 'return_pending', 'overdue', 'incident_review') THEN
     IF EXISTS (
       SELECT 1 FROM public.bookings
       WHERE resource_id = NEW.resource_id
         AND id <> NEW.id
-        AND status IN ('approved', 'checked_in', 'return_pending', 'overdue')
+        AND status IN ('approved', 'checked_in', 'return_pending', 'overdue', 'incident_review')
         AND (NEW.start_time < end_time AND NEW.end_time > start_time)
     ) THEN
       RAISE EXCEPTION 'Double-booking conflict: Another confirmed booking overlaps with this timeframe.';

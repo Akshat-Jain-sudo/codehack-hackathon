@@ -51,7 +51,7 @@ export const AuditHistoryPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16 font-mono text-xs">
+    <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-16 font-mono text-xs">
       
       {/* ─── 01 / MASTHEAD ─── */}
       <section className="border-b border-[#DCD9CF] pb-6 pt-2">
@@ -162,7 +162,7 @@ export const AuditHistoryPage: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="text-right text-[#7E8276] text-[11px] shrink-0 font-mono">
+                    <div className="text-left sm:text-right text-[#7E8276] text-[11px] shrink-0 font-mono">
                       <span className="font-bold text-[#252722]">{formatRelativeTime(log.created_at)}</span>
                       <span className="block text-[10px] text-[#7E8276]">
                         {formatDateTime(log.created_at)}

@@ -35,7 +35,24 @@ function loadStore(): AppStore {
   try {
     if (typeof localStorage !== 'undefined') {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        const store: AppStore = JSON.parse(raw);
+        let updated = false;
+        store.resources.forEach((r) => {
+          if (r.image_url?.includes('photo-1631556097152-c39479cbfeab')) {
+            r.image_url = 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=800&q=80';
+            updated = true;
+          }
+          if (r.image_url?.includes('photo-1581092335397-9583fe92d232')) {
+            r.image_url = 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80';
+            updated = true;
+          }
+        });
+        if (updated) {
+          saveStore(store);
+        }
+        return store;
+      }
     }
   } catch {
     // corrupted — reset
@@ -1689,7 +1706,7 @@ export function triggerUpcomingBookingReminders(): number {
           isWithin2Hours
             ? `Your session for "${resource?.name}" starts within 2 hours (${new Date(b.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}). Check-in window is open.`
             : `Reminder: Your reservation for "${resource?.name}" is scheduled for tomorrow at ${new Date(b.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}.`,
-          `/check-in-out?bookingId=${b.id}`,
+          `/checkin?bookingId=${b.id}`,
           'booking'
         );
         sentCount++;

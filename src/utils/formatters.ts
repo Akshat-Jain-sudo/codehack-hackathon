@@ -188,3 +188,14 @@ export function getStatusColor(status: BookingStatus | ResourceStatus | Conditio
       };
   }
 }
+
+
+export const FALLBACK_RESOURCE_IMAGE =
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="%23183D30"><rect width="100%" height="100%" fill="%23183D30"/><rect x="20" y="20" width="760" height="560" fill="none" stroke="%23D8FF3E" stroke-width="2" stroke-dasharray="8 8" opacity="0.3"/><circle cx="400" cy="270" r="70" fill="none" stroke="%23D8FF3E" stroke-width="4"/><path d="M370 270h60M400 240v60" stroke="%23D8FF3E" stroke-width="4" stroke-linecap="round"/><text x="400" y="390" fill="%23F3F0E8" font-family="monospace" font-size="20" font-weight="bold" text-anchor="middle" letter-spacing="3">LABORATORY SPECIMEN</text><text x="400" y="420" fill="%23D8FF3E" font-family="monospace" font-size="12" text-anchor="middle" letter-spacing="2">AUTHENTICATED ASSET</text></svg>';
+
+export function handleImageError(e: React.SyntheticEvent<HTMLImageElement, Event>): void {
+  const target = e.currentTarget;
+  if (target.src !== FALLBACK_RESOURCE_IMAGE) {
+    target.src = FALLBACK_RESOURCE_IMAGE;
+  }
+}

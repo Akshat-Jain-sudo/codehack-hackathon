@@ -308,7 +308,7 @@ export const OwnerDashboard: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16 font-mono text-xs">
+    <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-16 font-mono text-xs">
       
       {/* ─── 01 / CUSTODIAN MASTHEAD ─── */}
       <section className="border-b border-[#DCD9CF] pb-6 pt-2">

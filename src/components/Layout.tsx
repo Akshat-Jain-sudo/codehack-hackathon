@@ -3,6 +3,7 @@ import { Outlet, useLocation, Link } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
 import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';
+import { checkAndUpdateOverdueBookings, triggerUpcomingBookingReminders } from '../data/store';
 
 export const Layout: React.FC = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -13,6 +14,19 @@ export const Layout: React.FC = () => {
   useEffect(() => {
     setMobileSidebarOpen(false);
   }, [location.pathname]);
+
+  // Periodic background scans for overdue bookings & custody reminders
+  useEffect(() => {
+    checkAndUpdateOverdueBookings();
+    triggerUpcomingBookingReminders();
+
+    const interval = setInterval(() => {
+      checkAndUpdateOverdueBookings();
+      triggerUpcomingBookingReminders();
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Compute breadcrumbs
   const getBreadcrumbs = () => {
@@ -45,13 +59,13 @@ export const Layout: React.FC = () => {
   const breadcrumbs = getBreadcrumbs();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F3F0E8] text-[#252722] antialiased selection:bg-[#D8FF3E] selection:text-[#183D30]">
+    <div className="min-h-screen flex flex-col bg-[#F3F0E8] text-[#252722] antialiased w-full max-w-full overflow-x-hidden selection:bg-[#D8FF3E] selection:text-[#183D30]">
       {/* Top Navigation */}
       <Navbar 
         onOpenMobileSidebar={() => setMobileSidebarOpen(true)}
       />
 
-      <div className="flex-1 flex max-w-7xl w-full mx-auto">
+      <div className="flex-1 flex w-full max-w-full overflow-x-hidden">
         {/* Desktop & Mobile Adaptive Sidebar */}
         <Sidebar 
           mobileOpen={mobileSidebarOpen}
@@ -61,9 +75,9 @@ export const Layout: React.FC = () => {
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 min-w-0 flex flex-col">
+        <div className="flex-1 min-w-0 flex flex-col w-full max-w-full overflow-x-hidden">
           {/* Subtle Contextual Breadcrumb Header */}
-          <div className="px-4 sm:px-6 lg:px-8 pt-4 pb-2.5 flex items-center justify-between text-xs text-[#565950] border-b border-[#DCD9CF]">
+          <div className="px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4 pb-2.5 flex items-center justify-between text-xs text-[#565950] border-b border-[#DCD9CF]">
             <nav className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap py-1">
               <Link 
                 to="/dashboard" 
@@ -97,7 +111,7 @@ export const Layout: React.FC = () => {
             </div>
           </div>
 
-          <main className="flex-1 px-4 sm:px-6 lg:px-8 pb-12 pt-4 overflow-y-auto max-w-full">
+          <main className="flex-1 px-3 sm:px-6 lg:px-8 pb-12 pt-3 sm:pt-4 overflow-y-auto max-w-full">
             <Outlet />
           </main>
         </div>

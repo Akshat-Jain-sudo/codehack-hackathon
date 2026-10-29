@@ -30,6 +30,7 @@ import { StatusBadge } from '../components/StatusBadge';
 import { searchAndRankResources, type FilterCriteria } from '../utils/matchingEngine';
 import { runMatchAndExplain } from '../utils/aiMatchExplain';
 import type { MatchExplainResult } from '../types';
+import { handleImageError } from '../utils/formatters';
 
 export const DiscoveryDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -205,7 +206,7 @@ export const DiscoveryDashboard: React.FC = () => {
   const gridItems = isDefaultView ? paginatedStandardResources.slice(1) : paginatedStandardResources;
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8 pb-12 w-full max-w-full overflow-x-hidden">
       
       {/* ─── 01 / EDITORIAL MASTHEAD ─── */}
       <section className="border-b border-[#DCD9CF] pb-8 pt-2">
@@ -233,7 +234,7 @@ export const DiscoveryDashboard: React.FC = () => {
         
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-[#252722] leading-[1.05]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-[#252722] leading-[1.05]">
               Good equipment shouldn't sit idle.
             </h1>
             <p className="mt-4 text-base sm:text-lg text-[#565950] font-sans leading-relaxed max-w-2xl">
@@ -242,7 +243,7 @@ export const DiscoveryDashboard: React.FC = () => {
           </div>
 
           {/* Precision Inventory Counter Strip */}
-          <div className="flex items-stretch gap-px bg-[#DCD9CF] border border-[#DCD9CF] shrink-0">
+          <div className="grid grid-cols-3 sm:flex items-stretch gap-px bg-[#DCD9CF] border border-[#DCD9CF] shrink-0 w-full sm:w-auto">
             <div className="bg-[#FCFBF7] p-3 sm:px-4">
               <div className="text-[10px] font-mono uppercase tracking-widest text-[#7E8276]">Cataloged</div>
               <div className="text-xl font-display font-bold text-[#252722]">{allResources.length}</div>
@@ -271,7 +272,7 @@ export const DiscoveryDashboard: React.FC = () => {
       </section>
 
       {/* ─── 02 / NATURAL LANGUAGE SEARCH & QUERY TERMINAL ─── */}
-      <section className="bg-[#FCFBF7] border border-[#DCD9CF] p-5 sm:p-6 space-y-5">
+      <section className="bg-[#FCFBF7] border border-[#DCD9CF] p-4 sm:p-6 space-y-4 sm:space-y-5">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="relative flex-1">
             <div className="absolute left-3.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-[#7E8276]">
@@ -312,8 +313,8 @@ export const DiscoveryDashboard: React.FC = () => {
         </div>
 
         {/* Categories Bar */}
-        <div className="pt-2 border-t border-[#DCD9CF]">
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin">
+        <div className="pt-2 border-t border-[#DCD9CF] max-w-full overflow-hidden">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-thin max-w-full">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#7E8276] mr-2 shrink-0">
               FILTER /
             </span>
@@ -353,8 +354,8 @@ export const DiscoveryDashboard: React.FC = () => {
         </div>
 
         {/* Secondary Parameters Bar */}
-        <div className="pt-3 border-t border-[#DCD9CF] flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+        <div className="pt-3 border-t border-[#DCD9CF] flex flex-wrap items-center justify-between gap-4 max-w-full">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono w-full sm:w-auto">
             {/* Availability */}
             <select
               value={selectedAvailability}
@@ -602,7 +603,7 @@ export const DiscoveryDashboard: React.FC = () => {
             {paginatedAiMatches.map(({ resource, matchScore, suitabilityReason, limitations, isRestricted, restrictionReason, recommendedAlternatives }) => {
               const owner = getUserById(resource.owner_id);
               const category = categories.find((c) => c.id === resource.category_id);
-              const hasPendingRequest = myBookings.some((b) => b.resource_id === resource.id && b.status === 'pending');
+              const hasPendingRequest = myBookings.some((b) => b.resource_id === resource.id && (b.status === 'pending' || b.status === 'pending_approval'));
 
               return (
                 <div 
@@ -615,6 +616,7 @@ export const DiscoveryDashboard: React.FC = () => {
                       <img
                         src={resource.image_url}
                         alt={resource.name}
+                        onError={handleImageError}
                         className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300 opacity-90"
                       />
                       <div className="absolute top-2 left-2 flex items-center gap-1.5">
@@ -763,10 +765,11 @@ export const DiscoveryDashboard: React.FC = () => {
             <div className="border-2 border-[#183D30] bg-[#FCFBF7] overflow-hidden">
               <div className="grid lg:grid-cols-12 gap-0">
                 {/* Large Photography */}
-                <div className="lg:col-span-7 relative h-72 lg:h-auto min-h-[340px] bg-[#252722] overflow-hidden group">
+                <div className="lg:col-span-7 relative h-56 sm:h-72 lg:h-auto min-h-[220px] sm:min-h-[340px] bg-[#252722] overflow-hidden group">
                   <img
                     src={featuredItem.resource.image_url}
                     alt={featuredItem.resource.name}
+                    onError={handleImageError}
                     className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
                   />
                   <div className="absolute top-3 left-3 flex items-center gap-2">
@@ -866,7 +869,7 @@ export const DiscoveryDashboard: React.FC = () => {
             {gridItems.map(({ resource, score, explanation }, index) => {
               const owner = getUserById(resource.owner_id);
               const category = categories.find((c) => c.id === resource.category_id);
-              const hasPendingRequest = myBookings.some((b) => b.resource_id === resource.id && b.status === 'pending');
+              const hasPendingRequest = myBookings.some((b) => b.resource_id === resource.id && (b.status === 'pending' || b.status === 'pending_approval'));
               const isExplanationExpanded = expandedExplanationId === resource.id;
 
               return (
@@ -886,6 +889,7 @@ export const DiscoveryDashboard: React.FC = () => {
                       <img
                         src={resource.image_url}
                         alt={resource.name}
+                        onError={handleImageError}
                         className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300 opacity-90"
                       />
                       <div className="absolute top-2 left-2 flex items-center gap-1.5">

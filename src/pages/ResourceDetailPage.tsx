@@ -25,7 +25,7 @@ import {
 } from '../data/store';
 import { useAuth } from '../contexts/AuthContext';
 import { StatusBadge } from '../components/StatusBadge';
-import { formatDateTime } from '../utils/formatters';
+import { formatDateTime, handleImageError } from '../utils/formatters';
 
 export const ResourceDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -88,7 +88,7 @@ export const ResourceDetailPage: React.FC = () => {
   const specimenNumber = resource.id.replace('res-', '').padStart(4, '0');
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-16">
       
       {/* ─── 01 / SPECIMEN METADATA HEADER ─── */}
       <section className="border-b border-[#DCD9CF] pb-6 pt-2">
@@ -149,6 +149,7 @@ export const ResourceDetailPage: React.FC = () => {
               <img
                 src={resource.image_url}
                 alt={resource.name}
+                onError={handleImageError}
                 className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 opacity-90"
               />
               <div className="absolute top-3 left-3 px-2 py-0.5 bg-[#252722]/90 text-[10px] font-mono text-[#F3F0E8] uppercase tracking-wider">
@@ -374,7 +375,7 @@ export const ResourceDetailPage: React.FC = () => {
             <div>
               {userActiveBooking ? (
                 <button
-                  onClick={() => navigate('/checkin')}
+                  onClick={() => navigate(`/checkin?bookingId=${userActiveBooking.id}`)}
                   className="w-full py-3 bg-[#D8FF3E] hover:bg-[#c9ef30] text-[#183D30] font-mono text-xs uppercase font-bold flex items-center justify-center gap-2 border border-[#D8FF3E] transition-colors cursor-pointer"
                 >
                   <CalendarClock className="w-4 h-4 text-[#183D30]" />

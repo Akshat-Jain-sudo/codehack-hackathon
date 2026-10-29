@@ -58,8 +58,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }`;
 
   const renderNavContent = () => (
-    <div className="flex-1 flex flex-col justify-between py-3">
-      <div className="space-y-5">
+    <div className="flex-1 flex flex-col justify-between py-3 h-full overflow-hidden">
+      <div className="space-y-5 overflow-y-auto min-h-0 flex-1">
         {/* User Persona Compact Card */}
         <div className={`mx-3 p-3 bg-[#F3F0E8] border border-[#DCD9CF] ${collapsed ? 'text-center' : ''}`}>
           <div className={`flex items-center ${collapsed ? 'justify-center' : 'gap-2.5'}`}>
@@ -293,7 +293,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       </div>
 
       {/* Footer Section: Trust policy & desktop collapse toggle */}
-      <div className="px-3 pt-3 space-y-2">
+      <div className="px-3 pt-3 pb-1 space-y-2 shrink-0 border-t border-[#DCD9CF]/60 bg-[#FCFBF7]">
         {!collapsed && (
           <div className="p-3 bg-[#F3F0E8] border border-[#DCD9CF]">
             <div className="flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#183D30]">
@@ -331,7 +331,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <>
       {/* Desktop Persistent Sidebar */}
       <aside 
-        className={`hidden md:flex flex-col bg-[#FCFBF7] border-r border-[#DCD9CF] min-h-[calc(100vh-3.5rem)] transition-all duration-200 shrink-0 ${
+        className={`hidden md:flex flex-col bg-[#FCFBF7] border-r border-[#DCD9CF] sticky top-14 sm:top-16 h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] transition-all duration-200 shrink-0 z-30 ${
           collapsed ? 'w-16' : 'w-60'
         }`}
       >

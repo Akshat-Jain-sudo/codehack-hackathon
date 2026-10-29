@@ -34,7 +34,7 @@ import {
 } from '../data/store';
 import { StatusBadge } from '../components/StatusBadge';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { formatDateTime } from '../utils/formatters';
+import { formatDateTime, handleImageError } from '../utils/formatters';
 import type { Booking } from '../types';
 
 export const MyBookingsPage: React.FC = () => {
@@ -134,7 +134,7 @@ export const MyBookingsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-16">
       
       {/* ─── 01 / PERSONALIZED EDITORIAL HEADING ─── */}
       <section className="border-b border-[#DCD9CF] pb-6 pt-2">
@@ -159,7 +159,7 @@ export const MyBookingsPage: React.FC = () => {
 
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-[#252722] tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-[#252722] tracking-tight leading-tight">
               Good morning, {user.full_name.split(' ')[0]}.
             </h1>
             <p className="mt-2 text-sm sm:text-base text-[#565950] font-sans leading-relaxed">
@@ -168,7 +168,7 @@ export const MyBookingsPage: React.FC = () => {
           </div>
 
           {/* Precision Quota Matrix */}
-          <div className="flex items-stretch gap-px bg-[#DCD9CF] border border-[#DCD9CF] shrink-0 font-mono">
+          <div className="grid grid-cols-3 sm:flex items-stretch gap-px bg-[#DCD9CF] border border-[#DCD9CF] shrink-0 font-mono w-full sm:w-auto">
             <div className="bg-[#FCFBF7] p-3 sm:px-4">
               <span className="text-[10px] uppercase text-[#7E8276] block">Weekly Usage</span>
               <span className="text-lg font-bold text-[#183D30] mt-0.5 block">
@@ -236,7 +236,7 @@ export const MyBookingsPage: React.FC = () => {
 
                   {/* Horizontal Timeline Sequence */}
                   <div className="pt-2 border-t border-[#DCD9CF] space-y-2">
-                    <div className="flex items-center justify-between text-[10px] font-mono text-[#7E8276]">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10px] font-mono text-[#7E8276] gap-1">
                       <span>SCHEDULE:</span>
                       <span className="text-[#183D30] font-bold">
                         {formatDateTime(b.start_time)} → {formatDateTime(b.end_time)}
@@ -259,7 +259,7 @@ export const MyBookingsPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-[#DCD9CF] flex items-center justify-between">
+                  <div className="pt-2 border-t border-[#DCD9CF] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <span className="text-[10px] font-mono text-[#7E8276]">
                       PURPOSE: {b.purpose}
                     </span>
@@ -295,7 +295,7 @@ export const MyBookingsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('upcoming')}
-            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
               activeTab === 'upcoming' 
                 ? 'bg-[#183D30] text-[#D8FF3E] font-bold' 
                 : 'text-[#565950] hover:text-[#183D30]'
@@ -310,7 +310,7 @@ export const MyBookingsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('pending')}
-            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
               activeTab === 'pending' 
                 ? 'bg-[#183D30] text-[#D8FF3E] font-bold' 
                 : 'text-[#565950] hover:text-[#183D30]'
@@ -325,7 +325,7 @@ export const MyBookingsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('waitlist')}
-            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
               activeTab === 'waitlist' 
                 ? 'bg-[#183D30] text-[#D8FF3E] font-bold' 
                 : 'text-[#565950] hover:text-[#183D30]'
@@ -340,7 +340,7 @@ export const MyBookingsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveTab('history')}
-            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-2 uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
               activeTab === 'history' 
                 ? 'bg-[#183D30] text-[#D8FF3E] font-bold' 
                 : 'text-[#565950] hover:text-[#183D30]'
@@ -380,7 +380,7 @@ export const MyBookingsPage: React.FC = () => {
                     {/* Compact Image */}
                     <div className="w-16 h-16 bg-[#252722] overflow-hidden shrink-0 hidden sm:block border border-[#DCD9CF]">
                       {resource?.image_url && (
-                        <img src={resource.image_url} alt={resource.name} className="w-full h-full object-cover" />
+                        <img src={resource.image_url} alt={resource.name} onError={handleImageError} className="w-full h-full object-cover" />
                       )}
                     </div>
 
@@ -504,7 +504,7 @@ export const MyBookingsPage: React.FC = () => {
             <div key={res.id} className="border border-[#DCD9CF] bg-[#FCFBF7] p-4 flex flex-col justify-between space-y-3">
               <div>
                 <div className="relative h-28 bg-[#252722] overflow-hidden mb-2">
-                  <img src={res.image_url} alt={res.name} className="w-full h-full object-cover opacity-90" />
+                  <img src={res.image_url} alt={res.name} onError={handleImageError} className="w-full h-full object-cover opacity-90" />
                   <div className="absolute top-2 right-2">
                     <StatusBadge status={res.status} size="sm" />
                   </div>

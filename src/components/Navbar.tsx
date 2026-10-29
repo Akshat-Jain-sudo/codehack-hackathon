@@ -79,11 +79,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
   return (
     <>
       <header className="sticky top-0 z-40 bg-[#183D30] text-[#F3F0E8] border-b border-[#0F2820] shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 gap-3">
+        <div className="w-full px-2.5 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16 gap-1 sm:gap-3">
             
             {/* Left: Mobile Menu Toggle + Brand Logo */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               {onOpenMobileSidebar && (
                 <button
                   onClick={onOpenMobileSidebar}
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                 onClick={() => navigate('/dashboard')}
                 className="flex items-center gap-2.5 text-left group cursor-pointer"
               >
-                <div className="w-8 h-8 bg-[#D8FF3E] text-[#183D30] flex items-center justify-center font-bold text-xs shrink-0">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 bg-[#D8FF3E] text-[#183D30] flex items-center justify-center font-bold text-xs shrink-0">
                   <Layers className="w-4 h-4 stroke-[2.5]" />
                 </div>
                 <div className="flex flex-col">
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                     <span className="font-display font-bold text-base sm:text-lg text-[#F3F0E8] tracking-tight group-hover:text-[#D8FF3E] transition-colors">
                       LABLOOP
                     </span>
-                    <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 bg-[#D8FF3E] text-[#183D30] font-mono">
+                    <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 bg-[#D8FF3E] text-[#183D30] font-mono hidden sm:inline">
                       NET / 01
                     </span>
                   </div>
@@ -138,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
             </form>
 
             {/* Right: Quick Demo Switcher & Global Actions */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               
               {/* Architecture Blueprint Button */}
               <button
@@ -154,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
               <div className="relative" ref={roleRef}>
                 <button
                   onClick={() => setShowRoleMenu(!showRoleMenu)}
-                  className="flex items-center gap-2 px-2.5 py-1.5 border border-[#225141] bg-[#0F2820] hover:bg-[#225141] text-xs font-medium text-[#F3F0E8] transition-colors cursor-pointer"
+                  className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-2.5 py-1.5 border border-[#225141] bg-[#0F2820] hover:bg-[#225141] text-xs font-medium text-[#F3F0E8] transition-colors cursor-pointer shrink-0"
                 >
                   <div className="w-5 h-5 bg-[#D8FF3E] text-[#183D30] font-mono font-bold flex items-center justify-center text-[10px]">
                     {user.full_name.charAt(0)}
@@ -162,14 +162,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                   <span className="max-w-[110px] truncate hidden sm:inline font-mono text-[11px] uppercase tracking-wide">
                     {user.full_name.split(' ')[0]}
                   </span>
-                  <span className="px-1.5 py-0.2 bg-[#225141] text-[#D8FF3E] font-mono text-[10px] uppercase font-bold">
+                  <span className="px-1.5 py-0.2 bg-[#225141] text-[#D8FF3E] font-mono text-[10px] uppercase font-bold hidden sm:inline">
                     {user.role}
                   </span>
                   <ChevronDown className="w-3 h-3 text-[#AAB6A1]" />
                 </button>
 
                 {showRoleMenu && (
-                  <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-[#FCFBF7] shadow-2xl border border-[#DCD9CF] py-2 z-50 text-[#252722]">
+                  <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] max-w-xs sm:w-80 bg-[#FCFBF7] shadow-2xl border border-[#DCD9CF] py-2 z-50 text-[#252722]">
                     <div className="px-3.5 py-2 border-b border-[#DCD9CF] mb-1">
                       <p className="text-[10px] font-mono font-bold text-[#565950] uppercase tracking-widest">
                         PERSONA SELECTOR / TEST HARNESS
@@ -221,7 +221,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
               <div className="relative" ref={notifRef}>
                 <button
                   onClick={() => setShowNotifs(!showNotifs)}
-                  className="relative p-2 text-[#F3F0E8] hover:text-[#D8FF3E] hover:bg-[#225141] transition-colors cursor-pointer border border-[#225141]"
+                  className="relative p-1.5 sm:p-2 text-[#F3F0E8] hover:text-[#D8FF3E] hover:bg-[#225141] transition-colors cursor-pointer border border-[#225141] shrink-0"
                   aria-label="Open notifications"
                 >
                   <Bell className="w-4 h-4" />
@@ -233,7 +233,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                 </button>
 
                 {showNotifs && (
-                  <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-[#FCFBF7] shadow-2xl border border-[#DCD9CF] py-2 z-50 text-[#252722]">
+                  <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-[#FCFBF7] shadow-2xl border border-[#DCD9CF] py-2 z-50 text-[#252722]">
                     <div className="px-4 py-2 border-b border-[#DCD9CF] flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-[#183D30]">NOTIFICATIONS</span>
@@ -269,30 +269,30 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
                                 setShowNotifs(false);
                               }
                             }}
-                            className={`p-3 hover:bg-slate-50 transition-colors cursor-pointer text-left ${
-                              !n.read ? 'bg-indigo-50/30' : ''
+                            className={`p-3 hover:bg-[#F3F0E8] transition-colors cursor-pointer text-left ${
+                              !n.read ? 'bg-[#183D30]/5' : ''
                             }`}
                           >
                             <div className="flex items-start justify-between gap-2">
-                              <span className="font-semibold text-xs text-slate-900">{n.title}</span>
-                              <span className="text-[10px] text-slate-400 shrink-0">
+                              <span className="font-semibold text-xs text-[#252722]">{n.title}</span>
+                              <span className="text-[10px] font-mono text-[#7E8276] shrink-0">
                                 {formatRelativeTime(n.created_at)}
                               </span>
                             </div>
-                            <p className="text-xs text-slate-600 mt-0.5 line-clamp-2 leading-relaxed">{n.message}</p>
+                            <p className="text-xs text-[#565950] mt-0.5 line-clamp-2 leading-relaxed">{n.message}</p>
                           </div>
                         ))
                       )}
                     </div>
 
                     {/* Dedicated Notification Center Trigger */}
-                    <div className="p-2 border-t border-slate-100 bg-slate-50/70 text-center">
+                    <div className="p-2 border-t border-[#DCD9CF] bg-[#F3F0E8]/70 text-center">
                       <button
                         onClick={() => {
                           setShowNotifs(false);
                           setShowNotifCenterModal(true);
                         }}
-                        className="w-full py-1.5 text-xs font-semibold text-indigo-700 hover:text-indigo-900 hover:bg-indigo-100/50 rounded-lg transition-colors cursor-pointer"
+                        className="w-full py-1.5 font-mono text-xs uppercase tracking-wider font-bold text-[#183D30] hover:bg-[#183D30] hover:text-[#D8FF3E] transition-colors cursor-pointer"
                       >
                         Open Notification Center →
                       </button>
@@ -304,10 +304,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenMobileSidebar }) => {
               {/* Logout Button */}
               <button
                 onClick={logout}
-                className="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
+                className="p-1.5 sm:p-2 text-[#F3F0E8] hover:text-[#D8FF3E] hover:bg-[#225141] transition-colors cursor-pointer border border-[#225141] shrink-0"
                 title="Sign out"
               >
-                <LogOut className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                <LogOut className="w-4 h-4" />
               </button>
             </div>
           </div>

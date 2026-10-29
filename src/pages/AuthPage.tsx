@@ -148,7 +148,7 @@ export const AuthPage: React.FC = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-[10px] uppercase text-[#7E8276] mb-1 font-bold">
                         CAMPUS ROLE

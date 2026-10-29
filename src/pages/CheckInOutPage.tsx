@@ -34,7 +34,7 @@ import {
   getReportsForBooking
 } from '../data/store';
 import { StatusBadge } from '../components/StatusBadge';
-import { formatDateTime } from '../utils/formatters';
+import { formatDateTime, handleImageError } from '../utils/formatters';
 import type { 
   Booking, 
   ConditionRating, 
@@ -357,7 +357,7 @@ export const CheckInOutPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto pb-16 font-mono text-xs">
+    <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-16 font-mono text-xs">
       
       {/* ─── 01 / FIELD WORK MASTHEAD ─── */}
       <section className="border-b border-[#DCD9CF] pb-6 pt-2">
@@ -781,7 +781,7 @@ export const CheckInOutPage: React.FC = () => {
                       {evidenceFiles.map((file) => (
                         <div key={file.id} className="relative border border-[#DCD9CF] bg-[#252722] overflow-hidden">
                           {file.data_url && (
-                            <img src={file.data_url} alt={file.name} className="w-full h-24 object-cover" />
+                            <img src={file.data_url} alt={file.name} onError={handleImageError} className="w-full h-24 object-cover" />
                           )}
                           <div className="p-1 bg-[#FCFBF7] text-[9px] truncate font-mono text-[#565950]">
                             {file.name} ({(file.size / 1024).toFixed(0)} KB)
