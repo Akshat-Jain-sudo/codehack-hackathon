@@ -15,7 +15,6 @@ export interface SendVerificationEmailResult {
   isSimulated?: boolean;
   error?: string;
   message?: string;
-  verificationCode?: string;
 }
 
 export async function dispatchVerificationEmail(
@@ -45,16 +44,14 @@ export async function dispatchVerificationEmail(
       isSimulated: Boolean(data.isSimulated),
       error: data.error,
       message: data.message,
-      verificationCode: data.verificationCode,
     };
   } catch (err: any) {
-    // If running in an environment without the serverless function (e.g. basic Vite preview without Vercel CLI)
+    // If running in an environment without the serverless function
     console.warn('Unable to reach /api/auth/send-verification:', err);
     return {
       success: false,
       isSimulated: true,
-      message: 'Running in standalone client preview. Add RESEND_API_KEY on Vercel for live delivery.',
-      verificationCode: payload.verificationCode,
+      message: 'Unable to reach email delivery service. Check your connection or deployment.',
     };
   }
 }
