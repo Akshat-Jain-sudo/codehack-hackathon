@@ -92,17 +92,22 @@ export default async function handler(req: any, res: any) {
   // 1. ENGINE A: Gmail SMTP / Universal SMTP
   // Can send real OTP emails to ANY email address in the world with ZERO domain setup!
   // ─────────────────────────────────────────────────────────────
-  const gmailUser = process.env.GMAIL_USER || process.env.SMTP_USER;
-  const gmailPass = process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS;
+  const gmailUser = (process.env.GMAIL_USER || process.env.SMTP_USER || '').trim();
+  const gmailPass = (process.env.GMAIL_APP_PASSWORD || process.env.SMTP_PASS || '').replace(/\s+/g, '');
+  let smtpError: string | null = null;
 
   if (gmailUser && gmailPass) {
     try {
       const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true, // SSL
         auth: {
           user: gmailUser,
-          pass: gmailPass.replace(/\s+/g, ''), // strip spaces from Google app password
+          pass: gmailPass,
         },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
       });
 
       const info = await transporter.sendMail({
@@ -119,9 +124,9 @@ export default async function handler(req: any, res: any) {
         messageId: info.messageId,
         email,
       });
-    } catch (smtpErr: any) {
-      console.error('Gmail SMTP dispatch error:', smtpErr);
-      // Fall through to Resend if configured
+    } catch (err: any) {
+      console.error('Gmail SMTP dispatch error:', err);
+      smtpError = err?.message || 'SMTP dispatch error';
     }
   }
 
@@ -129,7 +134,7 @@ export default async function handler(req: any, res: any) {
   // 2. ENGINE B: Resend Service
   // Delivers to account owner in test mode, or to all users if domain is verified
   // ─────────────────────────────────────────────────────────────
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = (process.env.RESEND_API_KEY || '').trim();
   if (apiKey) {
     try {
       const resend = new Resend(apiKey);
@@ -149,6 +154,12 @@ export default async function handler(req: any, res: any) {
           isSimulated: true,
           message: sendResponse.error.message,
           error: `Resend Notice: ${sendResponse.error.message}`,
+          diagnostics: {
+            hasGmailUser: Boolean(gmailUser),
+            hasGmailPass: Boolean(gmailPass),
+            hasResendKey: Boolean(apiKey),
+            smtpError,
+          },
         });
       }
 
@@ -165,6 +176,12 @@ export default async function handler(req: any, res: any) {
         isSimulated: true,
         message: err.message || 'Resend service connection error',
         error: `Resend Notice: ${err.message}`,
+        diagnostics: {
+          hasGmailUser: Boolean(gmailUser),
+          hasGmailPass: Boolean(gmailPass),
+          hasResendKey: Boolean(apiKey),
+          smtpError,
+        },
       });
     }
   }
@@ -175,6 +192,12 @@ export default async function handler(req: any, res: any) {
   return res.status(200).json({
     success: false,
     isSimulated: true,
-    message: 'Add GMAIL_USER & GMAIL_APP_PASSWORD (or RESEND_API_KEY) in Vercel to send real emails to any user.',
+    message: 'Configure GMAIL_USER & GMAIL_APP_PASSWORD in Vercel to send real emails to any user.',
+    diagnostics: {
+      hasGmailUser: Boolean(gmailUser),
+      hasGmailPass: Boolean(gmailPass),
+      hasResendKey: Boolean(apiKey),
+      smtpError,
+    },
   });
 }
