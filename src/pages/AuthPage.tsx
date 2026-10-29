@@ -272,7 +272,7 @@ export const AuthPage: React.FC = () => {
                 <div className="p-3.5 bg-[#F3F0E8] border border-[#DCD9CF] space-y-2">
                   <div className="flex items-center gap-2 text-[#183D30] font-bold uppercase tracking-wide">
                     <Mail className="w-4 h-4 text-[#183D30]" />
-                    <span>VERIFICATION DISPATCHED VIA RESEND</span>
+                    <span>VERIFICATION EMAIL DISPATCHED</span>
                   </div>
                   <p className="text-xs text-[#565950] leading-relaxed">
                     A secure 6-digit access pass code has been routed to:
@@ -318,7 +318,7 @@ export const AuthPage: React.FC = () => {
                   >
                     <RotateCw className={`w-3 h-3 ${isResending ? 'animate-spin' : ''}`} />
                     <span>
-                      {resendCooldown > 0 ? `Resend via Resend (${resendCooldown}s)` : 'Resend Email via Resend'}
+                      {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : 'Resend Code'}
                     </span>
                   </button>
 
