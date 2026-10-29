@@ -147,7 +147,6 @@ export default async function handler(req: any, res: any) {
         return res.status(200).json({
           success: false,
           isSimulated: true,
-          verificationCode,
           message: sendResponse.error.message,
           error: `Resend Notice: ${sendResponse.error.message}`,
         });
@@ -164,7 +163,6 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({
         success: false,
         isSimulated: true,
-        verificationCode,
         message: err.message || 'Resend service connection error',
         error: `Resend Notice: ${err.message}`,
       });
@@ -178,6 +176,5 @@ export default async function handler(req: any, res: any) {
     success: false,
     isSimulated: true,
     message: 'Add GMAIL_USER & GMAIL_APP_PASSWORD (or RESEND_API_KEY) in Vercel to send real emails to any user.',
-    verificationCode,
   });
 }

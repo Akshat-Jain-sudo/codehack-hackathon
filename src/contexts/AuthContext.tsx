@@ -22,7 +22,6 @@ export interface AuthResult {
   requireVerification?: boolean;
   email?: string;
   isSimulated?: boolean;
-  verificationCode?: string;
   message?: string;
 }
 
@@ -141,10 +140,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       requireVerification: true,
       email: cleanEmail,
       isSimulated: sendResult.isSimulated,
-      verificationCode: sendResult.verificationCode,
-      message: sendResult.isSimulated
-        ? sendResult.message
-        : 'Verification pass code sent via Resend.',
+      error: sendResult.error,
+      message: sendResult.message || 'Verification pass code sent to your email.',
     };
   }, []);
 
@@ -185,10 +182,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return {
       success: true,
       isSimulated: sendResult.isSimulated,
-      verificationCode: sendResult.verificationCode,
-      message: sendResult.isSimulated
-        ? sendResult.message
-        : 'A new verification code has been dispatched via Resend.',
+      error: sendResult.error,
+      message: sendResult.message || 'A new verification code has been dispatched.',
     };
   }, []);
 

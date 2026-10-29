@@ -9,8 +9,7 @@ import {
   CheckCircle2, 
   RotateCw, 
   KeyRound, 
-  ShieldCheck,
-  Sparkles
+  ShieldCheck
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { DEMO_ACCOUNTS } from '../data/seed';
@@ -40,7 +39,6 @@ export const AuthPage: React.FC = () => {
   const [resendCooldown, setResendCooldown] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
-  const [devNoticeCode, setDevNoticeCode] = useState<string | null>(null);
 
   // Auto-redirect if already logged in
   useEffect(() => {
@@ -81,7 +79,6 @@ export const AuthPage: React.FC = () => {
     e.preventDefault();
     setError(null);
     setStatusMessage(null);
-    setDevNoticeCode(null);
     setIsSubmitting(true);
 
     try {
@@ -106,11 +103,10 @@ export const AuthPage: React.FC = () => {
           setIsVerifying(true);
           setResendCooldown(30);
 
-          if (res.isSimulated && res.verificationCode) {
-            setDevNoticeCode(res.verificationCode);
-            setStatusMessage('Developer Note: Set RESEND_API_KEY in Vercel for live delivery. Evaluation pass code generated below.');
+          if (res.error) {
+            setError(res.error);
           } else {
-            setStatusMessage(`Verification pass code dispatched via Resend to ${email}. Check your inbox!`);
+            setStatusMessage(`Verification pass code dispatched to ${email}. Check your inbox!`);
           }
         } else if (res.success) {
           navigate('/dashboard');
@@ -171,11 +167,10 @@ export const AuthPage: React.FC = () => {
       const res = await resendVerification(verifyEmailAddress);
       if (res.success) {
         setResendCooldown(60);
-        if (res.isSimulated && res.verificationCode) {
-          setDevNoticeCode(res.verificationCode);
-          setStatusMessage('Evaluation code refreshed below. (Add RESEND_API_KEY in Vercel settings for live delivery).');
+        if (res.error) {
+          setError(res.error);
         } else {
-          setStatusMessage('A fresh verification pass code has been dispatched via Resend!');
+          setStatusMessage(`A fresh verification pass code has been dispatched to ${verifyEmailAddress}! Check your inbox.`);
         }
       } else {
         setError(res.error || 'Failed to resend email.');
@@ -271,22 +266,6 @@ export const AuthPage: React.FC = () => {
               </div>
             )}
 
-            {/* Developer Notice when RESEND_API_KEY is not configured yet */}
-            {devNoticeCode && (
-              <div className="p-3.5 bg-[#EAE5D8] border border-[#D5CBB5] text-xs text-[#6B5A2B] space-y-1.5">
-                <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-[#854D0E]">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Evaluation Pass Code:</span>
-                </div>
-                <div className="font-mono text-base font-bold text-[#183D30] tracking-widest bg-[#FCFBF7] p-2 border border-[#DCD9CF] text-center">
-                  {devNoticeCode}
-                </div>
-                <p className="text-[10px] text-[#7E8276] leading-relaxed">
-                  To receive real emails on registered addresses, add your <code className="bg-[#DCD9CF] px-1 py-0.2 text-[#252722]">RESEND_API_KEY</code> to your Vercel Project Settings &rarr; Environment Variables.
-                </p>
-              </div>
-            )}
-
             {/* ─── SCENARIO A: RESEND EMAIL VERIFICATION STEP ─── */}
             {isVerifying ? (
               <form onSubmit={handleVerifySubmit} className="space-y-4 font-mono text-xs">
@@ -349,7 +328,6 @@ export const AuthPage: React.FC = () => {
                       setIsVerifying(false);
                       setError(null);
                       setStatusMessage(null);
-                      setDevNoticeCode(null);
                     }}
                     className="text-[#7E8276] hover:text-[#252722] uppercase underline cursor-pointer"
                   >
